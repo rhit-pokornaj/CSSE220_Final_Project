@@ -16,7 +16,7 @@ public class Collectible extends Sprite{
 		this.value = value;
 		
 		try {
-			sprite = ImageIO.read(Collectible.class.getResource("Collectible.png"));
+			sprite = ImageIO.read(Collectible.class.getResource("Money.png"));
 			spriteLoaded = (sprite != null);
 		} catch (IOException | IllegalArgumentException ex) {
 			spriteLoaded = false;
@@ -31,7 +31,6 @@ public class Collectible extends Sprite{
 
 	@Override
 	public void draw(Graphics2D g2) {
-		
 		if (!collected) {
             if (spriteLoaded) {
                 g2.drawImage(sprite, x, y, width, height, null);

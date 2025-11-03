@@ -45,7 +45,6 @@ public class GameComponent extends JComponent {
 			badGuy.draw(g2);
 			goodGuy.draw(g2);
 			money.draw(g2);
-
 	        }
 			
 		}
