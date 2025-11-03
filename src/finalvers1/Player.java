@@ -4,8 +4,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 import javax.swing.JComponent;
+
 
 public class Player extends JComponent{
 	 public static final int WIDTH  = 800;
@@ -18,6 +22,8 @@ public class Player extends JComponent{
 	 private boolean onGround;
 	 private float yVelocity;
 	 private float xVelocity;
+	 private BufferedImage sprite;
+	 private boolean spriteLoaded = false;
 	 
 	 public Player(int startX,int startY) {
 		 setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -27,12 +33,24 @@ public class Player extends JComponent{
 		 this.yVelocity = 0;
 		 this.xVelocity = 0;
 
+	        try {
+				sprite = ImageIO.read(Player.class.getResource("Runner.png"));
+				spriteLoaded = true;
+			} catch (IOException e) {
+				spriteLoaded = false;
+			}
+	    
 	 }
 	 	 public void draw (Graphics2D g2) {
-	 		g2.setColor(Color.CYAN);
-            g2.fillRect(x, y, 20, 40);
+	         if (spriteLoaded) {
+	             g2.drawImage(sprite, x, y, 30, 50, null);
+	         } else {
+	             g2.setColor(Color.CYAN);
+	             g2.fillRect(x, y, 30, 50);
+	         }
+	     }
 
-	 	 }
+	 	 
 		 public void setXVelocity(int speed) {
 			 xVelocity = speed;
 
@@ -48,8 +66,8 @@ public class Player extends JComponent{
 				 yVelocity+=GRAVITY;
 				 y+=yVelocity;
 				 
-				 if (y>=HEIGHT-40) {
-					 y=HEIGHT-40;
+				 if (y>=HEIGHT-50) {
+					 y=HEIGHT-50;
 					 yVelocity=0;
 					 onGround = true;
 				 }
