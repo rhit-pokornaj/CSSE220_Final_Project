@@ -42,6 +42,6 @@ public abstract class Sprite {
     public void setHeight(int height) { this.height = height; }
     
     public boolean isSpriteLoaded() { return spriteLoaded; }
-    public BufferedImage getSprite() { return sprite; }
+    public BufferedImage getSprite() { return sprite; } 
 
 }
