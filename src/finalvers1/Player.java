@@ -50,6 +50,9 @@ public class Player extends JComponent{
 	         }
 	     }
 
+	 	 public int getY() {
+	 		 return y;
+	 	 }
 	 	 
 		 public void setXVelocity(int speed) {
 			 xVelocity = speed;
@@ -61,19 +64,15 @@ public class Player extends JComponent{
 
 		 }
 		 
-		 public void update() {
+		 public void update(Platform p) {
 			 if(!onGround) {
 				 yVelocity+=GRAVITY;
 				 y+=yVelocity;
 				 
-				 if (y>=HEIGHT-50) {
-					 y=HEIGHT-50;
-					 yVelocity=0;
-					 onGround = true;
-				 }
+				 handleCollisions(p);
 			 }
 			 x+=xVelocity;
-
+			 
 			 
 		 }
 		 public void jump() {
@@ -82,7 +81,16 @@ public class Player extends JComponent{
 				 onGround=false;
 
 			 }
+		 }
 
+		 
+		 
+		 private void handleCollisions(Platform p) {
+			 if (p.getY() < y + 50) {
+				 y = p.getY() - 50;
+				 yVelocity = 0;
+				 onGround = true;
+			 }
 		 }
 		 
 		 

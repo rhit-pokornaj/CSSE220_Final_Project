@@ -23,14 +23,14 @@ public class GameComponent extends JComponent {
 	private final Enemy badGuy = new Enemy(150, 150);
 	public Player goodGuy = new Player(250,250);
 	public Collectible money = new Collectible(300, 500, 10);
-	public final Platform floor = new Platform(100,100,100);
+	public final Platform floor = new Platform(0, HEIGHT-10, WIDTH);
 	
 	public GameComponent() {
 		this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		//  seed a couple so something is visible immediately
 		this.setBackground(BG);
-		timer = new Timer(16,e-> {
-			goodGuy.update();
+		timer = new Timer(30,e-> {
+			goodGuy.update(floor);
 			badGuy.update();
 			repaint();
 		});

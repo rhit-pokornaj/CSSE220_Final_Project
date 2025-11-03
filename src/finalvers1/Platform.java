@@ -21,4 +21,9 @@ public class Platform {
         g2.fillRect(x, y, length, thickness);
         
     }
+	
+	public int getY() {
+		return y;
+	}
+	
 }
