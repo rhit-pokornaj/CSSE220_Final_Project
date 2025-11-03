@@ -9,8 +9,13 @@ import javax.imageio.ImageIO;
 
 public class Enemy extends Sprite implements Collision{
 	
+	public static final int WIDTH  = 800;
+	public static final int HEIGHT = 600;
+	public static final float GRAVITY = .98f;
+	
 	private int dx = 3;
-    private int dy = 3;
+    private boolean onGround;
+	private float yVelocity;
 
     public Enemy(int x, int y) {
         super(x, y, 40, 40); // initialize Sprite fields
@@ -26,25 +31,34 @@ public class Enemy extends Sprite implements Collision{
     @Override
     public void update() {
         // move logic can go here (if you call update() from your timer)
-        move(GameComponent.WIDTH, GameComponent.HEIGHT);
+		 if(!onGround) {
+			 yVelocity+=GRAVITY;
+			 y+=yVelocity;
+			 
+			 if (y>=HEIGHT-40) {
+				 y=HEIGHT-40;
+				 yVelocity=0;
+				 onGround = true;
+			 }
+		 }
+        move(GameComponent.WIDTH);
     }
 
     @Override
     public void draw(Graphics2D g2) {
         if (spriteLoaded) {
-            g2.drawImage(sprite, x - width, y - height, width, height, null);
+            g2.drawImage(sprite, x, y, width, height, null);
         } else {
             g2.setColor(Color.CYAN);
             g2.fillRect(x, y, width, height);
         }
     }
     
-    public void move(int screenWidth, int screenHeight) {
+    public void move(int screenWidth) {
     	x += dx;
-    	y += dy;
+
     	
     	if (x < 0 || x + width > screenWidth) { dx = -dx; }
-    	if (y < 0 || y + height > screenHeight) { dy = -dy; }
     }
 	
 }

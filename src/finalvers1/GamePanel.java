@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 	public class GamePanel extends JPanel {
 //		private final Player player = new Player(50,50);
 		private final GameComponent canvas = new GameComponent();
+		// left, right
+		private boolean[] keysHeld = new boolean[] {false, false};
 	    /**
 	     * Constructs the main game panel with controls and keyboard support.
 	     */
@@ -25,7 +27,8 @@ import javax.swing.JPanel;
 	    	this.setLayout(new BorderLayout(8, 8));
 	        this.add(canvas, BorderLayout.CENTER);
 	        this.setBackground(canvas.BG);
-	    		this.buildKeys();
+	        
+	    	this.buildKeys();
 	    }
 	    
 	    
@@ -34,13 +37,46 @@ import javax.swing.JPanel;
 			this.setFocusable(true);
 			this.requestFocusInWindow();
 			
+			
 			this.addKeyListener(new KeyAdapter() {
 		        @Override
 		        public void keyPressed(KeyEvent e) {
 		            switch (e.getKeyCode()) {
-		                case KeyEvent.VK_LEFT -> canvas.goodGuy.moveDelta(-10);
-		                case KeyEvent.VK_RIGHT -> canvas.goodGuy.moveDelta(10);
-		                case KeyEvent.VK_UP -> canvas.goodGuy.jump();
+		                case KeyEvent.VK_LEFT: 
+		                	if (!keysHeld[0]) {
+		                	canvas.goodGuy.setXVelocity(-10);
+		                	keysHeld[0] = true;
+		                }
+		                	break;
+		                	
+		                case KeyEvent.VK_RIGHT: 
+		                	if (!keysHeld[1]) {
+		                	canvas.goodGuy.setXVelocity(10);
+		                	keysHeld[1] = true;
+		                }
+		                	break;
+		                	
+		                case KeyEvent.VK_UP: 
+		                	canvas.goodGuy.jump();
+		                	break;
+		            }
+		        }
+		        
+		        public void keyReleased(KeyEvent e) {
+		            switch (e.getKeyCode()) {
+		                case KeyEvent.VK_LEFT: 
+		                	if (keysHeld[0]) {
+		                	canvas.goodGuy.setXVelocity(0);
+		                	keysHeld[0] = false;
+		                }
+		                	break;
+		                	
+		                case KeyEvent.VK_RIGHT:
+		                	if (keysHeld[1]) {
+		                	canvas.goodGuy.setXVelocity(0);
+		                	keysHeld[1] = false;
+		                	}
+		                	break;
 
 		            }
 		        }

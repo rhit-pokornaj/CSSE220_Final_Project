@@ -17,6 +17,7 @@ public class Player extends JComponent{
 	 private int y;
 	 private boolean onGround;
 	 private float yVelocity;
+	 private float xVelocity;
 	 
 	 public Player(int startX,int startY) {
 		 setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -24,6 +25,7 @@ public class Player extends JComponent{
 		 this.y = startY;
 		 this.onGround = false;
 		 this.yVelocity = 0;
+		 this.xVelocity = 0;
 
 	 }
 	 	 public void draw (Graphics2D g2) {
@@ -31,8 +33,8 @@ public class Player extends JComponent{
             g2.fillRect(x, y, 20, 40);
 
 	 	 }
-		 public void moveDelta(int dx) {
-			 x+=dx;
+		 public void setXVelocity(int speed) {
+			 xVelocity = speed;
 
 		 }
 		 public void setPosition(int xNew, int yNew) {
@@ -52,6 +54,7 @@ public class Player extends JComponent{
 					 onGround = true;
 				 }
 			 }
+			 x+=xVelocity;
 
 			 
 		 }

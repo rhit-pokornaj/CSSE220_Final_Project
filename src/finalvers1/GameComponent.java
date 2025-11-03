@@ -29,6 +29,7 @@ public class GameComponent extends JComponent {
 		this.setBackground(BG);
 		timer = new Timer(16,e-> {
 			goodGuy.update();
+			badGuy.update();
 			repaint();
 		});
 		timer.start();
