@@ -23,6 +23,7 @@ public class GameComponent extends JComponent {
 	private final Enemy badGuy = new Enemy(150, 150);
 	public Player goodGuy = new Player(250,250);
 	public Collectible money = new Collectible(300, 500, 10);
+	public final Platform floor = new Platform(100,100,100);
 	
 	public GameComponent() {
 		this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -45,6 +46,7 @@ public class GameComponent extends JComponent {
 			badGuy.draw(g2);
 			goodGuy.draw(g2);
 			money.draw(g2);
+			floor.draw(g2);
 	        }
 			
 		}
