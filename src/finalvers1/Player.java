@@ -36,7 +36,7 @@ public class Player extends JComponent{
 	        try {
 				sprite = ImageIO.read(Player.class.getResource("Runner.png"));
 				spriteLoaded = true;
-			} catch (IOException e) {
+			} catch (IOException | IllegalArgumentException ex) {
 				spriteLoaded = false;
 			}
 	    
