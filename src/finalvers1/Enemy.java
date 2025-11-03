@@ -31,16 +31,6 @@ public class Enemy extends Sprite implements Collision{
     @Override
     public void update() {
         // move logic can go here (if you call update() from your timer)
-		 if(!onGround) {
-			 yVelocity+=GRAVITY;
-			 y+=yVelocity;
-			 
-			 if (y>=HEIGHT-40) {
-				 y=HEIGHT-40;
-				 yVelocity=0;
-				 onGround = true;
-			 }
-		 }
         move(GameComponent.WIDTH);
     }
 
