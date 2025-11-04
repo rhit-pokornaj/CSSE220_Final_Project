@@ -2,12 +2,11 @@ package finalvers1;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Enemy extends Sprite implements Collision{
+public class Enemy extends Sprite {
 	
 	public static final int WIDTH  = 800;
 	public static final int HEIGHT = 600;
@@ -16,6 +15,12 @@ public class Enemy extends Sprite implements Collision{
 	private int dx = 3;
     private boolean onGround;
 	private float yVelocity;
+	
+	/**
+	 * The Enemy class loads the sprite into the given x and y-positions
+	 * @param x is the initial x-position
+	 * @param y is the initial y-position
+	 */
 
     public Enemy(int x, int y) {
         super(x, y, 40, 40); // initialize Sprite fields
@@ -43,6 +48,11 @@ public class Enemy extends Sprite implements Collision{
             g2.fillRect(x, y, width, height);
         }
     }
+    
+    /**
+     * The move method updates the enemy's position to make him patrol from left to right.
+     * @param screenWidth
+     */
     
     public void move(int screenWidth) {
     	x += dx;
