@@ -1,7 +1,9 @@
 package finalvers1;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class EntityManager {
 	
@@ -22,7 +24,9 @@ public class EntityManager {
 		badGuys.add(new Enemy(x,y));
 	}
 	
-	
+	public void handleCollisions() {
+		
+	}
 	
 
 }

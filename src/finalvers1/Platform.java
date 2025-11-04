@@ -22,8 +22,16 @@ public class Platform {
         
     }
 	
+	public int getX() {
+		return x;
+	}
+	
 	public int getY() {
 		return y;
+	}
+	
+	public int getLength() {
+		return length;
 	}
 	
 }
