@@ -24,9 +24,36 @@ public class EntityManager {
 		badGuys.add(new Enemy(x,y));
 	}
 	
-	public void handleCollisions() {
-		
+	public void updateAll() {
+        //update enemies
+        for (Enemy e : badGuys) {
+            e.update();
+        }
+        //update hero
+        goodGuy.update();
+        //deal with all collisions
+        handleCollisions();
 	}
 	
-
+	
+	public void handleCollisions() {
+		for (Enemy e : badGuys) {
+			if (goodGuy.isTouching(e)) {
+				System.out.println("dead");
+			} 
+		}
+		
+		for (Collectible c : blocks) {
+			if (goodGuy.isTouching(c)) {
+				System.out.println("hooray");
+			} 
+		}
+		
+		for (Platform p: platforms) {
+			if (goodGuy.x + goodGuy.width >= p.getX() && goodGuy.y + goodGuy.height >= p.getY() && goodGuy.x <= p.getX() + 2 && goodGuy.y <= p.getY() + 2) {
+				System.out.println("grounded");
+			}
+		}
+	}
+	
 }
