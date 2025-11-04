@@ -19,19 +19,23 @@ public class GameComponent extends JComponent {
 	public static final Color FG = Color.BLACK;
 	Timer timer;
 	
-	// Enemy additions
-	private final Enemy badGuy = new Enemy(150, 150);
-	public Player goodGuy = new Player(250,250);
-	public Collectible money = new Collectible(300, 500, 10);
-	public final Platform floor = new Platform(0, HEIGHT-10, WIDTH);
+	// level additions
+	EntityManager entities = new EntityManager();
+	Player goodGuy = entities.goodGuy;
+	
+	
 	
 	public GameComponent() {
 		this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		//  seed a couple so something is visible immediately
 		this.setBackground(BG);
+		//
+		entities.addPlatform(0,590,800);
+		entities.addCollectible(250, 250);
+		entities.addEnemy(150,150);
+		
 		timer = new Timer(30,e-> {
-			goodGuy.update();
-			badGuy.update();
+			entities.updateAll();
 			repaint();
 		});
 		timer.start();
@@ -43,10 +47,8 @@ public class GameComponent extends JComponent {
 			super.paintComponent(g);
 			Graphics2D g2 = (Graphics2D) g;
 			
-			badGuy.draw(g2);
-			goodGuy.draw(g2);
-			money.draw(g2);
-			floor.draw(g2);
+			entities.drawAll(g2);
+			
 	        }
 			
 		}
