@@ -1,18 +1,18 @@
 package finalvers1;
-
+ 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
+ 
 import javax.swing.JComponent;
 import javax.swing.Timer;
-
-
-
+ 
+ 
+ 
 public class GameComponent extends JComponent {
-
-
+ 
+ 
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
 	public static final Color BG = Color.BLUE;
@@ -30,12 +30,12 @@ public class GameComponent extends JComponent {
 		//  seed a couple so something is visible immediately
 		this.setBackground(BG);
 		timer = new Timer(30,e-> {
-			goodGuy.update(floor);
+			goodGuy.update();
 			badGuy.update();
 			repaint();
 		});
 		timer.start();
-
+ 
 	}
 		
 		@Override
@@ -50,5 +50,3 @@ public class GameComponent extends JComponent {
 	        }
 			
 		}
-
-
