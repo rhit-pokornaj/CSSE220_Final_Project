@@ -11,6 +11,14 @@ public class Collectible extends Sprite{
 	private boolean collected = false;
 	private int value;
 	
+	/**
+	 * The collectible class loads a collectible onto the game screen at the
+	 * given x and y positions.
+	 * @param x is the x-coordinate it needs to appear at.
+	 * @param y is the y-coordinate in needs to appear at.
+	 * @param value is the amount it increments the score by.
+	 */
+	
 	public Collectible (int x, int y, int value) {
 		super(x, y, 30, 30);
 		this.value = value;
@@ -42,17 +50,29 @@ public class Collectible extends Sprite{
 		
 	}
 	
+	/**
+	 * collect checks if the Player collected it and if it has been collected
+	 * it updates the collected boolean to true and prints "MONEY!" to the console 
+	 * for confirmation.
+	 * @param player
+	 */
+	
 	public void collect(Player player) {	
 		if (!collected) {
 			collected = true;
-			System.out.println("MONMEY!");
+			System.out.println("MONEY!");
 		}
 	}
+	
+	/**
+	 * isCollected returns whether the collectible is collected or not.
+	 * @return collected
+	 */
 	
 	public boolean isCollected() {
 		return collected;
 	}
-	
+
 	public int getValue() {
 		return value;
 	}

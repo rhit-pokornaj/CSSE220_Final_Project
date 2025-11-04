@@ -11,6 +11,13 @@ public abstract class Sprite {
 	protected BufferedImage sprite;
 	protected boolean spriteLoaded = false;
 	
+	/**
+	 * Defines the x, y positions and the width and height of the sprite.
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
 	
 	public Sprite(int x, int y, int width, int height) {
 		this.x = x;
@@ -22,14 +29,25 @@ public abstract class Sprite {
 	public abstract void update();
 	
 	public abstract void draw(Graphics2D g2);
-	
+	/**
+	 * getBounds gets the rectangular bounds of the sprite.
+	 * @return Rectangle
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, width, height);
 	}
 	
+	/**
+	 * isTouching checks if bounds of one sprite overlaps with another.
+	 * @param other is the other sprite whose bounds need to be checked.
+	 * @return boolean value isTouching
+	 */
+	
 	public boolean isTouching(Sprite other) {
 		return this.getBounds().intersects(other.getBounds());
 	}
+	
+	// getters and setters
 	
 	public int getX() { return x; }
     public int getY() { return y; }
