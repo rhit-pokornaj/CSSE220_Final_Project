@@ -51,7 +51,7 @@ public class EntityManager {
 		
 		for (Platform p: platforms) {
 			if (goodGuy.x + goodGuy.width >= p.getX() && goodGuy.y + goodGuy.height >= p.getY() && goodGuy.x <= p.getX() + 2 && goodGuy.y <= p.getY() + 2) {
-				System.out.println("on the floor");
+				System.out.println("grounded");
 			}
 		}
 	}
