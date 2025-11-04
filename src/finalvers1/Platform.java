@@ -18,6 +18,7 @@ public class Platform extends Sprite{
 		super(x, y, 800, 10);
 		
 		try {
+			
 			sprite = ImageIO.read(Platform.class.getResource("Platform.png"));
 			spriteLoaded = (sprite != null);
 		} catch (IOException | IllegalArgumentException ex) {
@@ -27,6 +28,7 @@ public class Platform extends Sprite{
 	
 	@Override
 	public void draw (Graphics2D g2) {
+		
 		if (spriteLoaded) {
 			g2.drawImage(sprite, x, y, 800, 10, null);
 		} else {
