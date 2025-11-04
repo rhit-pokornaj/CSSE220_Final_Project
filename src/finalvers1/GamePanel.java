@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.OverlayLayout;
 
 	/**
 	 * Controller class for the game.
@@ -15,7 +16,9 @@ import javax.swing.JPanel;
 	 */
 
 	public class GamePanel extends JPanel {
-//		private final Player player = new Player(50,50);
+		private final HudModel hudModel = new HudModel();
+		private final HudView hudView = new HudView();
+
 		private final GameComponent canvas = new GameComponent();
 		// left, right
 		private boolean[] keysHeld = new boolean[] {false, false};
@@ -24,11 +27,37 @@ import javax.swing.JPanel;
 	     */
 	    
 	    public GamePanel() {
-	    	this.setLayout(new BorderLayout(8, 8));
+	    		this.setLayout(new BorderLayout(8, 8));
 	        this.add(canvas, BorderLayout.CENTER);
 	        this.setBackground(canvas.BG);
 	        
-	    	this.buildKeys();
+	        setLayout(new BorderLayout());
+
+
+	        JPanel layered = new JPanel();
+	        layered.setLayout(new OverlayLayout(layered));
+	        layered.setOpaque(false);
+
+
+	        layered.add(canvas); // back
+
+
+	        hudView.setOpaque(false);
+	        hudView.setAlignmentX(0f); // left
+	        hudView.setAlignmentY(0f); // top
+	        hudView.setBorder(javax.swing.BorderFactory.createEmptyBorder(8,8,0,0));
+	        layered.add(hudView); // top
+
+
+	        add(layered, BorderLayout.CENTER);
+//	        add(buildControls(), BorderLayout.SOUTH);
+
+
+	        // initial sync
+	        hudModel.setLifeCount(hudModel.getLifeCount());
+	        hudView.refresh(hudModel);
+	        
+	    		this.buildKeys();
 	    }
 	    
 	    
@@ -59,6 +88,15 @@ import javax.swing.JPanel;
 		                case KeyEvent.VK_UP: 
 		                	canvas.goodGuy.jump();
 		                	break;
+		                	
+		                case KeyEvent.VK_S :
+		                    ScoreManager.save(hudModel.getScore(), hudModel.getLifeCount());
+		                    // quick feedback (optional)
+		                    System.out.println("Saved: score=" + hudModel.getScore() + ", balls=" + hudModel.getLifeCount());
+		                break;
+		                case KeyEvent.VK_0:
+		                		hudModel.addScore(1);
+		                		System.out.println("scored!");
 		            }
 		        }
 		        
@@ -77,6 +115,7 @@ import javax.swing.JPanel;
 		                	keysHeld[1] = false;
 		                	}
 		                	break;
+		                	
 
 		            }
 		        }
