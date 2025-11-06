@@ -33,6 +33,7 @@ public class GameComponent extends JComponent {
 
         // Add some objects
         entities.addPlatform(0, 590, 800);
+        entities.addPlatform(300, 520, 400);
         entities.addCollectible(250, 250);
         entities.addEnemy(150, 150);
 
