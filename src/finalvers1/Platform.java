@@ -44,7 +44,7 @@ public class Platform extends Sprite{
 			g2.drawImage(sprite, x, y, 800, 10, null);
 		} else {
 			g2.setColor(Color.BLACK);
-	        g2.fillRect(x, y, 800, 10);			
+	        g2.fillRect(x, y, 800, 10);	
 		}
     
     }
