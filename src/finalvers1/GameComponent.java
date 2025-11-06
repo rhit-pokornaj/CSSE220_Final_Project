@@ -17,7 +17,7 @@ public class GameComponent extends JComponent {
 	public static final int HEIGHT = 600;
 	public static final Color BG = Color.BLUE;
 	public static final Color FG = Color.BLACK;
-	Timer timer;
+	private Timer timer;
 	
 	// level additions
 	EntityManager entities = new EntityManager();

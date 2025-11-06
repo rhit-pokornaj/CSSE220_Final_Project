@@ -25,8 +25,8 @@ public class ScoreManager {
         }
     }
 	
-	public static List load() {
-        List lines = new ArrayList<>();
+	public static List<String> load() {
+        List<String> lines = new ArrayList<>();
         File f = new File(FILE);
         if (!f.exists()) return lines;
 
