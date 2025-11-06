@@ -22,8 +22,11 @@ public class Platform extends Sprite{
 		if (length == 800) {
 			img = "Platform.png";
 		}
-		else if(length == 400) {
+		else if (length == 400) {
 			img = "WavesPlatform.png";
+		}
+		else if (length == 200) {
+			img = "FlowerPlatform.png";
 		}
 		
 		try {
