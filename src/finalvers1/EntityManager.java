@@ -13,17 +13,19 @@ public class EntityManager {
 	public List<Enemy> badGuys = new ArrayList<>();
 	Player goodGuy = new Player(150,150);
 	
-	private HudModel hud;
+	private HudModel hudModel;
+	private HudView hudView;
 	
-	public EntityManager(HudModel hud) {
-		this.hud = hud;
+	public EntityManager(HudModel hudModel,HudView hudView) {
+		this.hudModel = hudModel;
+		this.hudView = hudView;
 	}
 	public void addPlatform(int x, int y, int length) {
 		platforms.add(new Platform(x,y,length));
 	}
 	
 	public void addCollectible(int x, int y) {
-		blocks.add(new Collectible(x, y, 100));
+		blocks.add(new Collectible(x, y+200, 100));
 	}
 		
 	public void addEnemy(int x, int y) {
@@ -34,13 +36,16 @@ public class EntityManager {
 		for (Enemy e : badGuys) {
 			if (goodGuy.isTouching(e)) {
 				System.out.println("dead");
-                hud.setLifeCount(hud.getLifeCount() - 1);
+				hudModel.loseLife(1);
+				hudView.refresh(hudModel);
 			} 
 		}
 		
 		for (Collectible c : blocks) {
 			if (goodGuy.isTouching(c)) {
 				System.out.println("hooray");
+				hudModel.addScore(1);
+                hudView.refresh(hudModel);
 			} 
 		}
 		

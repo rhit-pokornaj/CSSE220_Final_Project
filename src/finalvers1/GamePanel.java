@@ -1,6 +1,7 @@
 package finalvers1;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -20,7 +21,7 @@ public class GamePanel extends JPanel {
 
     private final HudModel hudModel = new HudModel();
     private final HudView hudView = new HudView();
-    private final GameComponent canvas = new GameComponent(hudModel);
+    private final GameComponent canvas = new GameComponent(hudModel,hudView);
 
     private boolean[] keysHeld = new boolean[] { false, false };
 
@@ -29,15 +30,23 @@ public class GamePanel extends JPanel {
         setBackground(GameComponent.BG);
 
         JPanel layered = new JPanel();
+        JPanel endScreen = new JPanel();
         layered.setLayout(new OverlayLayout(layered));
         layered.setOpaque(false);
         layered.add(canvas);
         layered.add(hudView);
+        endScreen.setLayout(new OverlayLayout(endScreen));
+        endScreen.setOpaque(true);
+        if(hudModel.getLifeCount()<=0) {
+        		endScreen.add(canvas);
+        		endScreen.setBackground(Color.BLUE);
+        }
 
         hudView.setAlignmentX(0f);
         hudView.setAlignmentY(0f);
 
         add(layered, BorderLayout.CENTER);
+       
 
         hudView.refresh(hudModel);
         buildKeys();

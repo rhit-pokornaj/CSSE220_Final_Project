@@ -12,7 +12,7 @@ public class HudModel {
     public void addScore(int delta) { 
     	this.score +=delta; 
     	}
-    public void setLifeCount(int count) { 
-    	this.lives = count; 
+    public void loseLife(int delta) { 
+    	this.lives -=delta; 
     	}
 }

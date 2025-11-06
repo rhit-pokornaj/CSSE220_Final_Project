@@ -23,12 +23,12 @@ public class GameComponent extends JComponent {
     public EntityManager entities;
     public Player goodGuy;
 
-    public GameComponent(HudModel hud) {
+    public GameComponent(HudModel hud, HudView hudView) {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(BG);
 
         // Initialize the game world
-        entities = new EntityManager(hud);
+        entities = new EntityManager(hud,hudView);
         goodGuy = entities.goodGuy;
 
         // Add some objects
@@ -39,6 +39,7 @@ public class GameComponent extends JComponent {
         // Game loop timer
         timer = new Timer(30, e -> {
             entities.updateAll();
+            
             repaint();
         });
         timer.start();
