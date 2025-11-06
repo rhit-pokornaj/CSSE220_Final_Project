@@ -22,8 +22,11 @@ public class Platform extends Sprite{
 		if (length == 800) {
 			img = "Platform.png";
 		}
-		else if(length == 400) {
+		else if (length == 400) {
 			img = "WavesPlatform.png";
+		}
+		else if (length == 200) {
+			img = "FlowerPlatform.png";
 		}
 		
 		try {
@@ -41,9 +44,9 @@ public class Platform extends Sprite{
 			g2.drawImage(sprite, x, y, 800, 10, null);
 		} else {
 			g2.setColor(Color.BLACK);
-	        g2.fillRect(x, y, 800, 10);			
+	        g2.fillRect(x, y, 800, 10);	
 		}
-        
+    
     }
 	
 
