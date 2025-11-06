@@ -16,6 +16,9 @@ public class Player extends Sprite {
 	 private float yVelocity;
 	 private float xVelocity;
 	 
+	 private int height, width;
+	 
+	 
 	 /**
 	  * The Player class loads in the hero sprite at the given start position.
 	  * @param startX is the initial x-coordinate
@@ -23,11 +26,13 @@ public class Player extends Sprite {
 	  */
 	 
 	 public Player(int startX,int startY) {
-		 super(startX, startY, 28, 38);
+		 super(startX, startY, 30, 50);
 		 
 		 this.onGround = false;
 		 this.yVelocity = 0;
 		 this.xVelocity = 0;
+		 this.width = 30;
+		 this.height = 50;
 
 	        try {
 				sprite = ImageIO.read(Player.class.getResource("Runner.png"));
@@ -39,10 +44,10 @@ public class Player extends Sprite {
 	 }
 	 	 public void draw (Graphics2D g2) {
 	         if (spriteLoaded) {
-	             g2.drawImage(sprite, x, y, 30, 50, null);
+	             g2.drawImage(sprite, x, y, width, height, null);
 	         } else {
 	             g2.setColor(Color.CYAN);
-	             g2.fillRect(x, y, 30, 50);
+	             g2.fillRect(x, y, width, height);
 	         }
 	     }
 
@@ -56,6 +61,11 @@ public class Player extends Sprite {
 	 	  */
 		 public void setXVelocity(int speed) {
 			 xVelocity = speed;
+
+		 }
+		 
+		 public void setYVelocity(int speed) {
+			 yVelocity = speed;
 
 		 }
 		 
@@ -74,6 +84,10 @@ public class Player extends Sprite {
 				 onGround=false;
 
 			 }
+		 }
+		 
+		 public void grounded() {
+			 onGround = true;
 		 }
 		 
 		 /**

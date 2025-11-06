@@ -44,11 +44,12 @@ public class EntityManager {
 			} 
 		}
 		
-//		for (Platform p: platforms) {
-//			if (goodGuy.x + goodGuy.width >= p.getX() && goodGuy.y + goodGuy.height >= p.getY() && goodGuy.x <= p.getX() + 2 && goodGuy.y <= p.getY() + 2) {
-//				System.out.println("grounded");
-//			}
-//		}
+		for (Platform p: platforms) {
+			if (goodGuy.isTouching(p) && goodGuy.getWidth() + goodGuy.getX() > p.getX() && goodGuy.getX() < p.getX() + p.getWidth()) {
+				goodGuy.grounded();
+				goodGuy.setY(p.getY() - goodGuy.getHeight());
+			}
+		}
 	}
 	
 	public void drawAll(Graphics2D g) {
