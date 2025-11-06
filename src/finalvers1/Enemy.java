@@ -15,12 +15,6 @@ public class Enemy extends Sprite {
 	private int dx = 3;
     private boolean onGround;
 	private float yVelocity;
-	
-	/**
-	 * The Enemy class loads the sprite into the given x and y-positions
-	 * @param x is the initial x-position
-	 * @param y is the initial y-position
-	 */
 
     public Enemy(int x, int y) {
         super(x, y, 40, 40); // initialize Sprite fields
@@ -48,12 +42,7 @@ public class Enemy extends Sprite {
             g2.fillRect(x, y, width, height);
         }
     }
-    
-    /**
-     * The move method updates the enemy's position to make him patrol from left to right.
-     * @param screenWidth
-     */
-    
+   
     public void move(int screenWidth) {
     	x += dx;
 
