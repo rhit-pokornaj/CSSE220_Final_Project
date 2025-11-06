@@ -47,13 +47,13 @@ public class EntityManager {
 				hudModel.addScore(1);
                 hudView.refresh(hudModel);
 			} 
-		}
+		}	
 		
 		for (Platform p: platforms) {
-			if (goodGuy.isTouching(p) && goodGuy.getWidth() + goodGuy.getX() > p.getX() && goodGuy.getX() < p.getX() + p.getWidth()) {
+			if (goodGuy.isTouching(p)) {
 				goodGuy.grounded();
-				goodGuy.setY(p.getY() - goodGuy.getHeight());
-			}
+
+			} 
 		}
 	}
 	
