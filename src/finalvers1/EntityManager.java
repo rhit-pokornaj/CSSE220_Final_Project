@@ -13,6 +13,11 @@ public class EntityManager {
 	public List<Enemy> badGuys = new ArrayList<>();
 	Player goodGuy = new Player(150,150);
 	
+	private HudModel hud;
+	
+	public EntityManager(HudModel hud) {
+		this.hud = hud;
+	}
 	public void addPlatform(int x, int y, int length) {
 		platforms.add(new Platform(x,y,length));
 	}
@@ -29,6 +34,7 @@ public class EntityManager {
 		for (Enemy e : badGuys) {
 			if (goodGuy.isTouching(e)) {
 				System.out.println("dead");
+                hud.setLifeCount(hud.getLifeCount() - 1);
 			} 
 		}
 		

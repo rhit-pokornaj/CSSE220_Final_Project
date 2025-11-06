@@ -20,7 +20,7 @@ public class GamePanel extends JPanel {
 
     private final HudModel hudModel = new HudModel();
     private final HudView hudView = new HudView();
-    private final GameComponent canvas = new GameComponent();
+    private final GameComponent canvas = new GameComponent(hudModel);
 
     private boolean[] keysHeld = new boolean[] { false, false };
 
@@ -36,7 +36,6 @@ public class GamePanel extends JPanel {
 
         hudView.setAlignmentX(0f);
         hudView.setAlignmentY(0f);
-//        hudView.setBorder(BorderFactory.createEmptyBorder(8, 8, 0, 0));
 
         add(layered, BorderLayout.CENTER);
 
