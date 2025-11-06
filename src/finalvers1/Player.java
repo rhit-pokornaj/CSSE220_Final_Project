@@ -86,8 +86,12 @@ public class Player extends Sprite {
 			 }
 		 }
 		 
-		 public void grounded() {
-			 onGround = true;
+		 public void grounded() { 
+			 	onGround = true;
+		 }
+		 
+		 public void inAir() {
+			 onGround = false;
 		 }
 		 
 		 /**
