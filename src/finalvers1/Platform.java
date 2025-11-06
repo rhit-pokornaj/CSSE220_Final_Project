@@ -13,13 +13,22 @@ import javax.imageio.ImageIO;
 
 public class Platform extends Sprite{
 	
+	public String img = "";
+	
 	public Platform(int x, int y, int length) {
 		//need to add img file as a param so we can have different platforms
 		super(x, y, 800, 10);
 		
+		if (length == 800) {
+			img = "Platform.png";
+		}
+		else if(length == 400) {
+			img = "WavesPlatform.png";
+		}
+		
 		try {
 			
-			sprite = ImageIO.read(Platform.class.getResource("Platform.png"));
+			sprite = ImageIO.read(Platform.class.getResource(img));
 			spriteLoaded = (sprite != null);
 		} catch (IOException | IllegalArgumentException ex) {
 			spriteLoaded = false;
