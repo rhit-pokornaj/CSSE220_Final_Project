@@ -46,7 +46,7 @@ public class Platform extends Sprite{
 			g2.setColor(Color.BLACK);
 	        g2.fillRect(x, y, 800, 10);			
 		}
-        
+    
     }
 	
 
