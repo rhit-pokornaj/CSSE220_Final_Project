@@ -42,8 +42,8 @@ public class EntityManager {
 		}
 		
 		for (Collectible c : blocks) {
-			if (goodGuy.isTouching(c)) {
-				System.out.println("hooray");
+			if (!c.isCollected() && goodGuy.isTouching(c)) {
+				c.collect(goodGuy);
 				hudModel.addScore(1);
                 hudView.refresh(hudModel);
 			} 

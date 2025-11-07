@@ -6,6 +6,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * The Collectible class loads a collectible onto the game screen at the
+ * given x and y positions. When the Player collects it, it disappears and
+ * adds to the player's score.
+ */
+
 public class Collectible extends Sprite{    
 	
 	private boolean collected = false;
