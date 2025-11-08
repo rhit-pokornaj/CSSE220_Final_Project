@@ -14,7 +14,7 @@ public class GameOverViewer extends JLabel {
 
         setBackground(new Color(0, 0, 0, 180)); 
         setForeground(Color.RED);
-        setFont(new Font("Arial", Font.BOLD, 100));
+        setFont(new Font("Arial", Font.BOLD, 120));
 //		setText("Score: "+ hud.getScore());
 
 //        JButton restart = new JButton();

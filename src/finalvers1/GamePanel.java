@@ -24,6 +24,8 @@ public class GamePanel extends JPanel {
 	private final HudView hudView = new HudView();
 	private final GameComponent canvas = new GameComponent(hudModel, hudView);
 	private final GameOverViewer over = new GameOverViewer(hudModel);
+	private final WinViewer win = new WinViewer(hudModel);
+
 
 	private boolean[] keysHeld = new boolean[] { false, false };
 	
@@ -43,6 +45,10 @@ public class GamePanel extends JPanel {
 		over.setAlignmentY(.5f);
 		layered.add(over);
 		
+		win.setAlignmentX(.5f);
+		win.setAlignmentY(.5f);
+		layered.add(win);
+		
 		add(layered,BorderLayout.CENTER);
 
 		layered.add(hudView);
@@ -53,14 +59,16 @@ public class GamePanel extends JPanel {
 		
 		buildKeys();
 		
-		new Timer(100, e -> checkGameOver()).start();
+		new Timer(100, e -> checkGameStatus()).start();
 
 	}
 
-	private void checkGameOver() {
+	private void checkGameStatus() {
 		if (hudModel.getLifeCount() <= 0) {
 			over.setVisible(true);
-			canvas.setEnabled(false);
+			play = false;
+		}else if(hudModel.getScore()>=6) {
+			win.setVisible(true);
 			play = false;
 		}
 	}
@@ -90,7 +98,9 @@ public class GamePanel extends JPanel {
 						canvas.goodGuy.jump();
 					}
 					break;
-
+				case KeyEvent.VK_0:
+					hudModel.addScore(1);
+					break;
 				}
 			}
 
