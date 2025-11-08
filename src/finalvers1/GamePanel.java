@@ -110,12 +110,14 @@ public class GamePanel extends JPanel {
 				case KeyEvent.VK_LEFT:
 					if (keysHeld[0]) {
 						canvas.goodGuy.setXVelocity(0);
+						
 						keysHeld[0] = false;
 					}
 					break;
 				case KeyEvent.VK_RIGHT:
 					if (keysHeld[1]) {
 						canvas.goodGuy.setXVelocity(0);
+						
 						keysHeld[1] = false;
 					}
 					break;

@@ -37,10 +37,20 @@ public class GameComponent extends JComponent {
         entities.addPlatform(600, 200,  200);
         entities.addCollectible(250, 250);
         entities.addEnemy(150, 150);
+        
+       
 
         // Game loop timer
         timer = new Timer(30, e -> {
+        	
             entities.updateAll();
+            
+            //player wraps around screen when going off edge
+            if (goodGuy.getX() < -goodGuy.getWidth()) {
+                goodGuy.setPosition(GameComponent.WIDTH, goodGuy.getY());
+            } else if (goodGuy.getX() > GameComponent.WIDTH) {
+                goodGuy.setPosition(-goodGuy.getWidth(), goodGuy.getY());
+            }
             
             repaint();
         });

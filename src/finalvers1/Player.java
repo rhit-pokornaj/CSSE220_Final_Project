@@ -55,13 +55,16 @@ public class Player extends Sprite {
 	 		 return y;
 	 	 }
 	 	 
+	 	 public int getX() {
+	 		 return x;
+	 	 }
+	 	 
 	 	 /**
 	 	  * setXVelocity sets the running speed of the player to the given speed.
 	 	  * @param speed
 	 	  */
 		 public void setXVelocity(int speed) {
 			 xVelocity = speed;
-
 		 }
 		 
 		 public void setYVelocity(int speed) {
