@@ -23,9 +23,11 @@ public class GamePanel extends JPanel {
 	private final HudModel hudModel = new HudModel();
 	private final HudView hudView = new HudView();
 	private final GameComponent canvas = new GameComponent(hudModel, hudView);
-	private final GameOverViewer over = new GameOverViewer();
+	private final GameOverViewer over = new GameOverViewer(hudModel);
 
 	private boolean[] keysHeld = new boolean[] { false, false };
+	
+	private boolean play = true;
 
 	public GamePanel() {
 		setLayout(new BorderLayout(8, 8));
@@ -59,6 +61,7 @@ public class GamePanel extends JPanel {
 		if (hudModel.getLifeCount() <= 0) {
 			over.setVisible(true);
 			canvas.setEnabled(false);
+			play = false;
 		}
 	}
 
@@ -71,19 +74,21 @@ public class GamePanel extends JPanel {
 			public void keyPressed(KeyEvent e) {
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_LEFT:
-					if (!keysHeld[0]) {
+					if (!keysHeld[0]&&play) {
 						canvas.goodGuy.setXVelocity(-10);
 						keysHeld[0] = true;
 					}
 					break;
 				case KeyEvent.VK_RIGHT:
-					if (!keysHeld[1]) {
+					if (!keysHeld[1]&&play) {
 						canvas.goodGuy.setXVelocity(10);
 						keysHeld[1] = true;
 					}
 					break;
 				case KeyEvent.VK_UP:
-					canvas.goodGuy.jump();
+					if (play) {
+						canvas.goodGuy.jump();
+					}
 					break;
 
 				}
