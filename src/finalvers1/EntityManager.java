@@ -29,7 +29,7 @@ public class EntityManager {
 	}
 		
 	public void addEnemy(int x, int y) {
-		badGuys.add(new Enemy(x,y));
+		badGuys.add(new Enemy(x,y+200));
 	}
 	
 	public void handleCollisions() {
@@ -52,7 +52,6 @@ public class EntityManager {
 		for (Platform p: platforms) {
 			if (goodGuy.isTouching(p)) {
 				goodGuy.grounded();
-
 			} 
 		}
 	}

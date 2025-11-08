@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.OverlayLayout;
+import javax.swing.Timer;
 
 /**
  * Controller class for the game. Handles user input (buttons + keys) and
@@ -31,20 +32,32 @@ public class GamePanel extends JPanel {
 		setBackground(GameComponent.BG);
 
 		JPanel layered = new JPanel();
-		JPanel endScreen = new JPanel();
 		layered.setLayout(new OverlayLayout(layered));
 		layered.setOpaque(false);
-		layered.add(canvas);
-		layered.add(hudView);
-
-
+		
 		hudView.setAlignmentX(0f);
 		hudView.setAlignmentY(0f);
-
+		
+		over.setAlignmentX(.5f);
+		over.setAlignmentY(.5f);
+		
+		layered.add(canvas);
+		layered.add(hudView);
+		layered.add(over);
+	
 		add(layered, BorderLayout.CENTER);
-
 		hudView.refresh(hudModel);
+		
 		buildKeys();
+		new Timer(100,e->checkGameOver()).start();
+		
+	}
+	
+	private void checkGameOver() {
+		if (hudModel.getLifeCount() <= 0) {
+			over.setVisible(true);
+			canvas.setEnabled(false);
+		}
 	}
 
 	private void buildKeys() {
