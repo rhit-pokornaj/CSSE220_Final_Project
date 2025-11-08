@@ -34,25 +34,27 @@ public class GamePanel extends JPanel {
 		JPanel layered = new JPanel();
 		layered.setLayout(new OverlayLayout(layered));
 		layered.setOpaque(false);
-		
-		hudView.setAlignmentX(0f);
-		hudView.setAlignmentY(0f);
+
+		layered.add(canvas);
 		
 		over.setAlignmentX(.5f);
 		over.setAlignmentY(.5f);
-		
-		layered.add(canvas);
-		layered.add(hudView);
 		layered.add(over);
-	
-		add(layered, BorderLayout.CENTER);
+		
+		add(layered,BorderLayout.CENTER);
+
+		layered.add(hudView);
+
+		add(hudView, BorderLayout.NORTH);
+		
 		hudView.refresh(hudModel);
 		
 		buildKeys();
-		new Timer(100,e->checkGameOver()).start();
 		
+		new Timer(100, e -> checkGameOver()).start();
+
 	}
-	
+
 	private void checkGameOver() {
 		if (hudModel.getLifeCount() <= 0) {
 			over.setVisible(true);
@@ -83,14 +85,7 @@ public class GamePanel extends JPanel {
 				case KeyEvent.VK_UP:
 					canvas.goodGuy.jump();
 					break;
-				case KeyEvent.VK_S:
-					ScoreManager.save(hudModel.getScore(), hudModel.getLifeCount());
-					System.out.println("Saved: score=" + hudModel.getScore() + ", lives=" + hudModel.getLifeCount());
-					break;
-				case KeyEvent.VK_0:
-					hudModel.addScore(1);
-					hudView.refresh(hudModel);
-					break;
+
 				}
 			}
 

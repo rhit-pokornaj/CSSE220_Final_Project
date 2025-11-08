@@ -42,7 +42,6 @@ public class GameApp {
      */
 	public void show() {
 		frame.setVisible(true);
-
 	}
 
 }
