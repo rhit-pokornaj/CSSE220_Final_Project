@@ -22,6 +22,8 @@ public class GameComponent extends JComponent {
     // Make these fields so you can access them anywhere
     public EntityManager entities;
     public Player goodGuy;
+    
+    public boolean isDownPressed() { return GamePanel.keysHeld[2]; }
 
     public GameComponent(HudModel hud, HudView hudView) {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -43,7 +45,7 @@ public class GameComponent extends JComponent {
         // Game loop timer
         timer = new Timer(30, e -> {
         	
-            entities.updateAll();
+            entities.updateAll(isDownPressed());
             
             //player wraps around screen when going off edge
             if (goodGuy.getX() < -goodGuy.getWidth()) {

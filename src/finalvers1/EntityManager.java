@@ -25,14 +25,19 @@ public class EntityManager {
 	}
 	
 	public void addCollectible(int x, int y) {
-		blocks.add(new Collectible(x, y+200, 100));
+		blocks.add(new Collectible (x+50, y+200, 100));
+		blocks.add(new Collectible (x+100, y+200, 100));
+		blocks.add(new Collectible (x+150, y+200, 100));
+		blocks.add(new Collectible (x+200, y+200, 100));
+		blocks.add(new Collectible (x+250, y+200, 100));
+		blocks.add(new Collectible (x+300, y+200, 100));
 	}
 		
 	public void addEnemy(int x, int y) {
 		badGuys.add(new Enemy(x,y+200));
 	}
 	
-	public void handleCollisions() {
+	public void handleCollisions(boolean downPressed) {
 		for (Enemy e : badGuys) {
 			if (goodGuy.isTouching(e)) {
 				System.out.println("dead");
@@ -42,7 +47,7 @@ public class EntityManager {
 		}
 		
 		for (Collectible c : blocks) {
-			if (!c.isCollected() && goodGuy.isTouching(c)) {
+			if (!c.isCollected() && goodGuy.isTouching(c) && downPressed) {
 				c.collect(goodGuy);
 				hudModel.addScore(1);
                 hudView.refresh(hudModel);
@@ -73,7 +78,7 @@ public class EntityManager {
         goodGuy.draw(g);
 	}
 	
-	public void updateAll() {
+	public void updateAll(boolean downPressed) {
         //update enemies
         for (Enemy e : badGuys) {
             e.update();
@@ -81,7 +86,7 @@ public class EntityManager {
         //update hero
         goodGuy.update();
         //deal with all collisions
-        handleCollisions();
+        handleCollisions(downPressed);
 	}
 	
 }

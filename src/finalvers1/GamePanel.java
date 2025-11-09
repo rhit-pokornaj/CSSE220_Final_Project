@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
 	private final WinViewer win = new WinViewer();
 
 
-	private boolean[] keysHeld = new boolean[] { false, false };
+	public static boolean[] keysHeld = new boolean[] { false, false, false };
 	
 	private boolean play = true;
 
@@ -90,8 +90,8 @@ public class GamePanel extends JPanel {
 						canvas.goodGuy.jump();
 					}
 					break;
-				case KeyEvent.VK_0:
-					hudModel.addScore(1);
+				case KeyEvent.VK_DOWN:
+					keysHeld[2] = true;
 					break;
 				}
 			}
@@ -112,6 +112,9 @@ public class GamePanel extends JPanel {
 						
 						keysHeld[1] = false;
 					}
+					break;
+				case KeyEvent.VK_DOWN:
+					keysHeld[2] = false;
 					break;
 				}
 			}
