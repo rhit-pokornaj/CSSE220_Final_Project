@@ -24,7 +24,7 @@ public class GamePanel extends JPanel {
 	private final HudView hudView = new HudView();
 	private final GameComponent canvas = new GameComponent(hudModel, hudView);
 	private final GameOverViewer over = new GameOverViewer(hudModel);
-	private final WinViewer win = new WinViewer(hudModel);
+	private final WinViewer win = new WinViewer();
 
 
 	private boolean[] keysHeld = new boolean[] { false, false };
@@ -32,27 +32,19 @@ public class GamePanel extends JPanel {
 	private boolean play = true;
 
 	public GamePanel() {
-		setLayout(new BorderLayout(8, 8));
 		setBackground(GameComponent.BG);
-
+		
+		setLayout(new BorderLayout());
 		JPanel layered = new JPanel();
 		layered.setLayout(new OverlayLayout(layered));
 		layered.setOpaque(false);
 
 		layered.add(canvas);
-		
-		over.setAlignmentX(.5f);
-		over.setAlignmentY(.5f);
+		layered.add(hudView);  // overlays the game
 		layered.add(over);
-		
-		win.setAlignmentX(.5f);
-		win.setAlignmentY(.5f);
 		layered.add(win);
 		
-		add(layered,BorderLayout.CENTER);
-
-		layered.add(hudView);
-
+		add(layered, BorderLayout.CENTER);
 		add(hudView, BorderLayout.NORTH);
 		
 		hudView.refresh(hudModel);

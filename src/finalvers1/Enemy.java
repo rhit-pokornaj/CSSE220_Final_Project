@@ -16,6 +16,12 @@ public class Enemy extends Sprite {
     private boolean onGround;
 	private float yVelocity;
 
+	/**
+	 * The Enemy class loads in the enemy sprite at the given start position.
+	 * 
+	 * @param x is the initial x-coordinate
+	 * @param y is the initial y-coordinate
+	 */
     public Enemy(int x, int y) {
         super(x, y, 40, 40); // initialize Sprite fields
 
@@ -26,7 +32,8 @@ public class Enemy extends Sprite {
             spriteLoaded = false;
         }
     }
-
+    
+    
     @Override
     public void update() {
         // move logic can go here (if you call update() from your timer)
@@ -43,6 +50,7 @@ public class Enemy extends Sprite {
         }
     }
    
+    
     public void move(int screenWidth) {
     	x += dx;
 

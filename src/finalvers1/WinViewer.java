@@ -6,7 +6,9 @@ import java.awt.Font;
 import javax.swing.JLabel;
 
 public class WinViewer extends JLabel {
-	public WinViewer(HudModel hud) {
+	
+	 // The winViewer class contains the screen that shows when a user wins
+	public WinViewer() {
 
 		setText("YOU WIN!");
 		setOpaque(true);
