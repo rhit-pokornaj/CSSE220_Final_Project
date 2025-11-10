@@ -70,6 +70,10 @@ public class Collectible extends Sprite{
 		}
 	}
 	
+	public void reset() {
+		collected = false;
+	}
+	
 	/**
 	 * isCollected returns whether the collectible is collected or not.
 	 * @return collected

@@ -9,12 +9,12 @@ import javax.swing.JLabel;
 public class GameOverViewer extends JLabel {
     public GameOverViewer(HudModel hud) {
     	
-        setText("GAME OVER");
+        setText("GAME OVER Press 'R' to Restart");
         setOpaque(true);
 
         setBackground(new Color(0, 0, 0, 180)); 
         setForeground(Color.RED);
-        setFont(new Font("Arial", Font.BOLD, 120));
+        setFont(new Font("Arial", Font.BOLD, 60));
 //		setText("Score: "+ hud.getScore());
 
 //        JButton restart = new JButton();

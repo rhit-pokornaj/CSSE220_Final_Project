@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -25,10 +27,10 @@ public class GamePanel extends JPanel {
 	private final GameComponent canvas = new GameComponent(hudModel, hudView);
 	private final GameOverViewer over = new GameOverViewer(hudModel);
 	private final WinViewer win = new WinViewer();
+	public List<Sprite> sprites = canvas.entities.sprites;
 
-
-	public static boolean[] keysHeld = new boolean[] { false, false, false };
 	
+	public static boolean[] keysHeld = new boolean[] { false, false, false };
 	private boolean play = true;
 
 	public GamePanel() {
@@ -59,9 +61,12 @@ public class GamePanel extends JPanel {
 		if (hudModel.getLifeCount() <= 0) {
 			over.setVisible(true);
 			play = false;
-		}else if(hudModel.getScore()>=6) {
+		} else if(hudModel.getScore()>=6) {
 			win.setVisible(true);
 			play = false;
+		} else {
+			over.setVisible(false);
+			win.setVisible(false);
 		}
 	}
 
@@ -79,20 +84,41 @@ public class GamePanel extends JPanel {
 						keysHeld[0] = true;
 					}
 					break;
+					
 				case KeyEvent.VK_RIGHT:
 					if (!keysHeld[1]&&play) {
 						canvas.goodGuy.setXVelocity(10);
 						keysHeld[1] = true;
 					}
 					break;
+					
 				case KeyEvent.VK_UP:
 					if (play) {
 						canvas.goodGuy.jump();
 					}
 					break;
+					
 				case KeyEvent.VK_DOWN:
 					keysHeld[2] = true;
 					break;
+					
+				case KeyEvent.VK_R:
+					if (!play) {
+						for (Sprite s: sprites) {
+							if (s instanceof Collectible && ((Collectible) s).isCollected()) {
+								((Collectible) s).reset();
+							}
+						// HUD Reset
+						hudModel.setLifeCount(3);
+						hudModel.setScore(0);
+						hudView.refresh(hudModel);
+						//Player reset
+						canvas.goodGuy.setPosition(250,250);
+						// Restart Game
+						play = true;
+						
+						}
+					}
 				}
 			}
 

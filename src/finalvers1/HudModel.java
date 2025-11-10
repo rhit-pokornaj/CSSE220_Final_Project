@@ -15,6 +15,14 @@ public class HudModel {
 	public int getLifeCount() {
 		return lives;
 	}
+	
+	public void setScore(int n) {
+		score = n;
+	}
+	
+	public void setLifeCount(int n) {
+		lives = n;
+	}
 
 	/**
 	 * increments the score by delta amount 

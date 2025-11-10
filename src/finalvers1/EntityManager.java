@@ -44,6 +44,8 @@ public class EntityManager {
 			// Enemy collisions
 			if (s instanceof Enemy) {
 				if (goodGuy.isTouching(s)) {
+					goodGuy.setXVelocity(0);
+					goodGuy.setYVelocity(0);
 					goodGuy.setPosition(250, 250);
 					hudModel.loseLife(1);
 					hudView.refresh(hudModel);
