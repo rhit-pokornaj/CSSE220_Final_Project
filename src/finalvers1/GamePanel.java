@@ -108,16 +108,20 @@ public class GamePanel extends JPanel {
 							if (s instanceof Collectible && ((Collectible) s).isCollected()) {
 								((Collectible) s).reset();
 							}
+							
+							if (s instanceof Enemy) {
+								s.setX(650);
+								s.setY(350);
+							}
+						}
 						// HUD Reset
 						hudModel.setLifeCount(3);
 						hudModel.setScore(0);
 						hudView.refresh(hudModel);
-						//Player reset
+						//Player Reset
 						canvas.goodGuy.setPosition(250,250);
 						// Restart Game
 						play = true;
-						
-						}
 					}
 				}
 			}
