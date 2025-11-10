@@ -14,8 +14,9 @@ public class Player extends Sprite {
 	private boolean onGround;
 	private float yVelocity;
 	private float xVelocity;
-
 	private int height, width;
+	
+	public EntityManager entities;
 
 	/**
 	 * The Player class loads in the hero sprite at the given start position.
@@ -73,6 +74,10 @@ public class Player extends Sprite {
 	public void setXVelocity(int speed) {
 		xVelocity = speed;
 	}
+	
+	public void setYVelocity(int speed) {
+		yVelocity = speed;
+	}
 
 	/**
 	 * sets the new position of the player to be (xNew,yNew)
@@ -100,6 +105,7 @@ public class Player extends Sprite {
 	// returns that player is on ground
 	public void grounded() {
 		onGround = true;
+		yVelocity = 0;
 	}
 
 	// returns that player is in air
@@ -116,7 +122,7 @@ public class Player extends Sprite {
 
 	@Override
 	public void update() {
-
+		
 		if (!onGround) {
 			yVelocity += GRAVITY;
 			y += yVelocity;

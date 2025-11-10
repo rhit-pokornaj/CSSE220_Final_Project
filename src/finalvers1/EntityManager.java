@@ -8,9 +8,7 @@ import java.util.List;
 
 public class EntityManager {
 	
-	public List<Platform> platforms = new ArrayList<>();
-	public List<Collectible> blocks = new ArrayList<>();
-	public List<Enemy> badGuys = new ArrayList<>();
+	public List<Sprite> sprites = new ArrayList<>();
 	Player goodGuy = new Player(150,150);
 	
 	private HudModel hudModel;
@@ -21,71 +19,87 @@ public class EntityManager {
 		this.hudView = hudView;
 	}
 	public void addPlatform(int x, int y, int length) {
-		platforms.add(new Platform(x,y,length));
+		sprites.add(new Platform(x,y,length));
 	}
 	
 	public void addCollectible(int x, int y) {
-		blocks.add(new Collectible (x+50, y+200, 100));
-		blocks.add(new Collectible (x+100, y+200, 100));
-		blocks.add(new Collectible (x+150, y+200, 100));
-		blocks.add(new Collectible (x+200, y+200, 100));
-		blocks.add(new Collectible (x+250, y+200, 100));
-		blocks.add(new Collectible (x+300, y+200, 100));
+		sprites.add(new Collectible (x+50, y+200, 100));
+		sprites.add(new Collectible (x+100, y+200, 100));
+		sprites.add(new Collectible (x+150, y+200, 100));
+		sprites.add(new Collectible (x+200, y+200, 100));
+		sprites.add(new Collectible (x+250, y+200, 100));
+		sprites.add(new Collectible (x+300, y+200, 100));
 	}
 		
 	public void addEnemy(int x, int y) {
-		badGuys.add(new Enemy(x,y+200));
+		sprites.add(new Enemy(x,y+200));
 	}
 	
 	public void handleCollisions(boolean downPressed) {
-		for (Enemy e : badGuys) {
-			if (goodGuy.isTouching(e)) {
-				System.out.println("dead");
-				hudModel.loseLife(1);
-				hudView.refresh(hudModel);
-			} 
-		}
 		
-		for (Collectible c : blocks) {
-			if (!c.isCollected() && goodGuy.isTouching(c) && downPressed) {
-				c.collect(goodGuy);
-				hudModel.addScore(1);
-                hudView.refresh(hudModel);
-			} 
+		boolean onFloor = false;
+		Sprite on = null;
+		
+		for (Sprite s : sprites) {
+			// Enemy collisions
+			if (s instanceof Enemy) {
+				if (goodGuy.isTouching(s)) {
+					goodGuy.setPosition(250, 250);
+					hudModel.loseLife(1);
+					hudView.refresh(hudModel);
+				}
+			}
+			
+			// Platform Collisions
+			if (s instanceof Platform) {
+				if (goodGuy.isTouching(s) && goodGuy.getY() < s.getY()) {
+					onFloor = true;
+					on = s;
+				} else if (goodGuy.isTouching(s) && goodGuy.getY() > s.getY()) {
+					goodGuy.setYVelocity(0);
+					goodGuy.setY(s.getY()+10);
+				}
+			}
+				
+			if (!onFloor) {
+				goodGuy.inAir();
+			} else {
+				goodGuy.setY(on.getY()-goodGuy.getHeight()+1);
+				goodGuy.grounded();
+			}
+			
+			// Collectible Collisions
+			if (s instanceof Collectible) {
+				if (!((Collectible) s).isCollected() && goodGuy.isTouching(s) && downPressed) {
+					((Collectible) s).collect(goodGuy);
+					hudModel.addScore(1);
+	                hudView.refresh(hudModel);
+				}
+			}
+			
 		}	
 		
-		for (Platform p: platforms) {
-			if (goodGuy.isTouching(p)) {
-				goodGuy.grounded();
-			} 
-		}
 	}
 	
+
+	
 	public void drawAll(Graphics2D g) {
-        //draw platforms
-		for (Platform p : platforms) {
-            p.draw(g);
-        }
-        //draw collectible
-        for (Collectible c : blocks) {
-            c.draw(g);
-        }
-        //draw enemies
-        for (Enemy e : badGuys) {
-            e.draw(g);
-        }
-        //draw hero
+        //draw sprites
+		for (Sprite s : sprites) {
+            s.draw(g);
+		}
+		// draw Player
         goodGuy.draw(g);
 	}
 	
 	public void updateAll(boolean downPressed) {
-        //update enemies
-        for (Enemy e : badGuys) {
-            e.update();
+        //update sprites
+        for (Sprite s : sprites) {
+            s.update();
         }
-        //update hero
+        // update Player
         goodGuy.update();
-        //deal with all collisions
+        // handle all collisions
         handleCollisions(downPressed);
 	}
 	
