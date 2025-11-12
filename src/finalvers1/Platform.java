@@ -14,10 +14,13 @@ import javax.imageio.ImageIO;
 public class Platform extends Sprite{
 	
 	public String img = "";
+	private int length;
 	
 	public Platform(int x, int y, int length) {
 		//need to add img file as a param so we can have different platforms
-		super(x, y, 800, 10);
+		super(x, y, length, 10);
+		
+		this.length = length;
 		
 		if (length == 800) {
 			img = "Platform.png";
@@ -41,10 +44,10 @@ public class Platform extends Sprite{
 	@Override
 	public void draw (Graphics2D g2) {
 		if (spriteLoaded) {
-			g2.drawImage(sprite, x, y, 800, 10, null);
+			g2.drawImage(sprite, x, y, length, 10, null);
 		} else {
 			g2.setColor(Color.BLACK);
-	        g2.fillRect(x, y, 800, 10);	
+	        g2.fillRect(x, y, length, 10);	
 		}
     
     }

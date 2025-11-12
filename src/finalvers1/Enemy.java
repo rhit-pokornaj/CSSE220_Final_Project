@@ -15,16 +15,21 @@ public class Enemy extends Sprite {
 	private int dx = 3;
     private boolean onGround;
 	private float yVelocity;
-
+	private int travel;
+	private int startX;
+	
 	/**
 	 * The Enemy class loads in the enemy sprite at the given start position.
 	 * 
 	 * @param x is the initial x-coordinate
 	 * @param y is the initial y-coordinate
 	 */
-    public Enemy(int x, int y) {
+    public Enemy(int x, int y, int travel) {
         super(x, y, 40, 40); // initialize Sprite fields
 
+        this.startX = x;
+        this.travel = travel;
+        
         try {
             sprite = ImageIO.read(Enemy.class.getResource("Enemy.png"));
             spriteLoaded = (sprite != null);
@@ -37,7 +42,7 @@ public class Enemy extends Sprite {
     @Override
     public void update() {
         // move logic can go here (if you call update() from your timer)
-        move(GameComponent.WIDTH);
+        move(travel);
     }
 
     @Override
@@ -51,11 +56,11 @@ public class Enemy extends Sprite {
     }
    
     
-    public void move(int screenWidth) {
+    public void move(int travel) {
     	x += dx;
 
     	
-    	if (x < 0 || x + width > screenWidth) { dx = -dx; }
+    	if (x < startX || x > startX + travel - 40) { dx = -dx; }
     }
 	
 }

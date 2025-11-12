@@ -66,7 +66,6 @@ public class Collectible extends Sprite{
 	public void collect(Player player) {	
 		if (!collected) {
 			collected = true;
-			System.out.println("MONEY!");
 		}
 	}
 	

@@ -15,7 +15,7 @@ public class WinViewer extends JLabel {
 
 		setBackground(new Color(0, 0, 0, 180));
 		setForeground(Color.GREEN);
-		setFont(new Font("Arial", Font.BOLD, 60));
+		setFont(new Font("Arial", Font.BOLD, 40));
 
 		setVisible(false); // hidden by default
 		setAlignmentX(.5f);

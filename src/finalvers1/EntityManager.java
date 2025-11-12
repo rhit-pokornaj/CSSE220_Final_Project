@@ -23,16 +23,11 @@ public class EntityManager {
 	}
 	
 	public void addCollectible(int x, int y) {
-		sprites.add(new Collectible (x+50, y+200, 100));
-		sprites.add(new Collectible (x+100, y+200, 100));
-		sprites.add(new Collectible (x+150, y+200, 100));
-		sprites.add(new Collectible (x+200, y+200, 100));
-		sprites.add(new Collectible (x+250, y+200, 100));
-		sprites.add(new Collectible (x+300, y+200, 100));
+		sprites.add(new Collectible (x, y, 100));
 	}
 		
-	public void addEnemy(int x, int y) {
-		sprites.add(new Enemy(x,y+200));
+	public void addEnemy(int x, int y, int travel) {
+		sprites.add(new Enemy(x,y, travel));
 	}
 	
 	public void handleCollisions(boolean downPressed) {
