@@ -9,7 +9,7 @@ import java.util.List;
 public class EntityManager {
 	
 	public List<Sprite> sprites = new ArrayList<>();
-	Player goodGuy = new Player(20,530);
+	Player goodGuy = new Player(20,100);
 	
 	private HudModel hudModel;
 	private HudView hudView;
@@ -18,16 +18,21 @@ public class EntityManager {
 		this.hudModel = hudModel;
 		this.hudView = hudView;
 	}
-	public void addPlatform(int x, int y, int length) {
-		sprites.add(new Platform(x,y,length));
+	
+	public void clearLevel() {
+		sprites.clear();
 	}
 	
-	public void addCollectible(int x, int y) {
-		sprites.add(new Collectible (x, y, 100));
+	public void addPlatform(Platform p) {
+		sprites.add(p);
+	}
+	
+	public void addCollectible(Collectible c) {
+		sprites.add(c);
 	}
 		
-	public void addEnemy(int x, int y, int travel) {
-		sprites.add(new Enemy(x,y, travel));
+	public void addEnemy(Enemy e) {
+		sprites.add(e);
 	}
 	
 	public void handleCollisions(boolean downPressed) {

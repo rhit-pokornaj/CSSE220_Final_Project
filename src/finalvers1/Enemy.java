@@ -8,14 +8,9 @@ import javax.imageio.ImageIO;
 
 public class Enemy extends Sprite {
 	
-	public static final int WIDTH  = 800;
-	public static final int HEIGHT = 600;
 	public static final float GRAVITY = .98f;
-	
 	private int dx = 3;
-    private boolean onGround;
-	private float yVelocity;
-	private int travel;
+	private Platform platform;
 	private int startX;
 	
 	/**
@@ -24,11 +19,11 @@ public class Enemy extends Sprite {
 	 * @param x is the initial x-coordinate
 	 * @param y is the initial y-coordinate
 	 */
-    public Enemy(int x, int y, int travel) {
+    public Enemy(int x, int y, Platform platform) {
         super(x, y, 40, 40); // initialize Sprite fields
 
         this.startX = x;
-        this.travel = travel;
+        this.platform = platform;
         
         try {
             sprite = ImageIO.read(Enemy.class.getResource("Enemy.png"));
@@ -42,7 +37,7 @@ public class Enemy extends Sprite {
     @Override
     public void update() {
         // move logic can go here (if you call update() from your timer)
-        move(travel);
+        move();
     }
 
     @Override
@@ -59,11 +54,11 @@ public class Enemy extends Sprite {
     	return startX;
     }
     
-    public void move(int travel) {
+    public void move() {
     	x += dx;
 
     	
-    	if (x < startX || x > startX + travel - 40) { dx = -dx; }
+    	if (x < platform.getX() || x > platform.getX() + platform.getWidth() - 40) { dx = -dx; }
     }
 	
 }

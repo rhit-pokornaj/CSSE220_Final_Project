@@ -32,16 +32,10 @@ public class GameComponent extends JComponent {
         // Initialize the game world
         entities = new EntityManager(hud,hudView);
         goodGuy = entities.goodGuy;
-
-        // Draw Level 1
-        entities.addPlatform(0, 590, 800);
-        entities.addPlatform(200, 500, 400);
-        entities.addPlatform(600, 410,  200);
-        entities.addCollectible(230, 450);
-        entities.addCollectible(530, 450);
-        entities.addEnemy(200, 460, 400);
         
-       
+        // Level loader
+        String levelFile = "C:\\Users\\annusha\\eclipse-workspace\\CSSE220_Final_Project\\src\\finalvers1\\level1.txt";
+        LevelLoader.loadPlatforms(levelFile, entities);
 
         // Game loop timer
         timer = new Timer(30, e -> {
