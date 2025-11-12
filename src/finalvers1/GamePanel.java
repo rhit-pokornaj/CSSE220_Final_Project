@@ -110,8 +110,7 @@ public class GamePanel extends JPanel {
 							}
 							
 							if (s instanceof Enemy) {
-								s.setX(650);
-								s.setY(350);
+								s.setX(((Enemy) s).getStartX());
 							}
 						}
 						// HUD Reset
@@ -119,7 +118,7 @@ public class GamePanel extends JPanel {
 						hudModel.setScore(0);
 						hudView.refresh(hudModel);
 						//Player Reset
-						canvas.goodGuy.setPosition(250,250);
+						canvas.goodGuy.setPosition(20,530);
 						// Restart Game
 						play = true;
 					}

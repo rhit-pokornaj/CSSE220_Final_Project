@@ -33,11 +33,12 @@ public class GameComponent extends JComponent {
         entities = new EntityManager(hud,hudView);
         goodGuy = entities.goodGuy;
 
-        // Add some objects
+        // Draw Level 1
         entities.addPlatform(0, 590, 800);
         entities.addPlatform(200, 500, 400);
         entities.addPlatform(600, 410,  200);
-        entities.addCollectible(250, 250);
+        entities.addCollectible(230, 450);
+        entities.addCollectible(530, 450);
         entities.addEnemy(200, 460, 400);
         
        
@@ -65,4 +66,6 @@ public class GameComponent extends JComponent {
         Graphics2D g2 = (Graphics2D) g;
         entities.drawAll(g2);
     }
+    
+
 }

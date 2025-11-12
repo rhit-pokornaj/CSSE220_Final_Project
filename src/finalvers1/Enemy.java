@@ -55,6 +55,9 @@ public class Enemy extends Sprite {
         }
     }
    
+    public int getStartX() {
+    	return startX;
+    }
     
     public void move(int travel) {
     	x += dx;
