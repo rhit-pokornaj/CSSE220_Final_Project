@@ -25,9 +25,8 @@ public class Collectible extends Sprite{
 	 * @param value is the amount it increments the score by.
 	 */
 	
-	public Collectible (int x, int y, int value) {
+	public Collectible (int x, int y) {
 		super(x, y, 30, 30);
-		this.value = value;
 		
 		try {
 			sprite = ImageIO.read(Collectible.class.getResource("Money.png"));

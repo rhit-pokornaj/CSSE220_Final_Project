@@ -55,7 +55,28 @@ public class LevelLoader {
                     	}
                     	
                         col++;
-                    } else {
+                    } else if (currentChar == 'c') {
+                    	int coinX = col * 20;
+                    	Platform platformCoin = null;
+                    	
+                    	for (Platform p : platforms) {
+                    		if (p.getX() <= coinX && coinX <= p.getX() + p.getWidth()) {
+                                if (platformCoin == null || p.getY() > platformCoin.getY()) {
+                                    platformCoin = p;
+                                }
+                            }
+                    	}
+                    	
+                    	if (platformCoin != null) {
+                    		int coinY = platformCoin.getY() - 40;
+                    		em.addCollectible(new Collectible(coinX, coinY));
+                    	}
+                    	
+                        col++;
+                    }
+                    
+                    
+                    else {
                         col++;
                     }
                 }

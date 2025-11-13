@@ -9,7 +9,6 @@ import javax.swing.JComponent;
 import javax.swing.Timer;
  
  
- 
 public class GameComponent extends JComponent {
 
     public static final int WIDTH = 800;
@@ -18,6 +17,7 @@ public class GameComponent extends JComponent {
     public static final Color FG = Color.BLACK;
 
     private Timer timer;
+    private int currentLevel = 1;
 
     // Make these fields so you can access them anywhere
     public EntityManager entities;
@@ -36,6 +36,8 @@ public class GameComponent extends JComponent {
         // Level loader
         String levelFile = "C:\\Users\\annusha\\eclipse-workspace\\CSSE220_Final_Project\\src\\finalvers1\\level1.txt";
         LevelLoader.loadPlatforms(levelFile, entities);
+        
+
 
         // Game loop timer
         timer = new Timer(30, e -> {
@@ -60,6 +62,14 @@ public class GameComponent extends JComponent {
         Graphics2D g2 = (Graphics2D) g;
         entities.drawAll(g2);
     }
+    
+    public void loadLevel(int levelNumber) {
+        entities.clearLevel(); // clear all platforms, enemies, etc.
+
+        String filename = "levels/level" + levelNumber + ".txt";
+        LevelLoader.loadPlatforms(filename, entities);
+    }
+
     
 
 }
