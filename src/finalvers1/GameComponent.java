@@ -16,7 +16,7 @@ public class GameComponent extends JComponent {
     public static final Color BG = Color.BLUE;
     public static final Color FG = Color.BLACK;
 
-    private Timer timer;
+    Timer timer;
     private int currentLevel = 1;
 
     // Make these fields so you can access them anywhere
@@ -44,7 +44,7 @@ public class GameComponent extends JComponent {
             entities.updateAll(isDownPressed());
             
             if (hud.getScore() == 6) {
-                nextLevel(hud);
+                nextLevel(hud,hudView);
             }
             
             //player wraps around screen when going off edge
@@ -76,13 +76,15 @@ public class GameComponent extends JComponent {
     }
 
     // 🚪 Advance to next level
-    private void nextLevel(HudModel hud) {
+    private void nextLevel(HudModel hud, HudView hudV) {
         currentLevel++;
-        hud.setScore(0);
+        
+        if (currentLevel <= 3) {
+        	hud.setScore(0);
+        }
         
         if (currentLevel > 3) {
             System.out.println("🎉 All levels complete!");
-
             timer.stop();
             // optional: show win screen or restart game
             return;
@@ -97,6 +99,7 @@ public class GameComponent extends JComponent {
         	hud.setLifeCount(3);
         } 
         loadLevel(currentLevel);
+        hudV.refresh(hud);
     }
     
     public void setLevel(int l) {

@@ -61,12 +61,15 @@ public class GamePanel extends JPanel {
 		if (hudModel.getLifeCount() <= 0) {
 			over.setVisible(true);
 			play = false;
-		} else if(hudModel.getScore()>=18) {
+			canvas.timer.stop();
+		} else if(hudModel.getScore()>5 && canvas.getLevel()==4) {
 			win.setVisible(true);
 			play = false;
+			canvas.timer.stop();
 		} else {
 			over.setVisible(false);
 			win.setVisible(false);
+			canvas.timer.start();
 		}
 	}
 

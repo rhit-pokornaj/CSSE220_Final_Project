@@ -46,7 +46,7 @@ public class EntityManager {
 				if (goodGuy.isTouching(s)) {
 					goodGuy.setXVelocity(0);
 					goodGuy.setYVelocity(0);
-					goodGuy.setPosition(600, 400);
+					goodGuy.setPosition(600, 300);
 					hudModel.loseLife(1);
 					hudView.refresh(hudModel);
 				}
