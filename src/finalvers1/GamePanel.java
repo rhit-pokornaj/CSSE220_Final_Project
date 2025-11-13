@@ -61,7 +61,7 @@ public class GamePanel extends JPanel {
 		if (hudModel.getLifeCount() <= 0) {
 			over.setVisible(true);
 			play = false;
-		} else if(hudModel.getScore()>=6) {
+		} else if(hudModel.getScore()>=18) {
 			win.setVisible(true);
 			play = false;
 		} else {
@@ -119,8 +119,11 @@ public class GamePanel extends JPanel {
 						hudView.refresh(hudModel);
 						//Player Reset
 						canvas.goodGuy.setPosition(600,300);
+						canvas.setLevel(1);
+						canvas.loadLevel(canvas.getLevel());
 						// Restart Game
 						play = true;
+						
 					}
 				}
 			}

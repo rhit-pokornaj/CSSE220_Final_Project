@@ -68,7 +68,7 @@ public class GameComponent extends JComponent {
     }
     
    
-    private void loadLevel(int levelNumber) {
+    public void loadLevel(int levelNumber) {
         entities.clearLevel(); // clear old platforms/enemies/etc.
         String levelFile = String.format("src/finalvers1/level%d.txt", levelNumber);
         LevelLoader.loadPlatforms(levelFile, entities);
@@ -82,6 +82,7 @@ public class GameComponent extends JComponent {
         
         if (currentLevel > 3) {
             System.out.println("🎉 All levels complete!");
+
             timer.stop();
             // optional: show win screen or restart game
             return;
@@ -98,7 +99,13 @@ public class GameComponent extends JComponent {
         loadLevel(currentLevel);
     }
     
-
+    public void setLevel(int l) {
+    	currentLevel = l;
+    }
+    
+    public int getLevel() {
+    	return currentLevel;
+    }
     
 
 }
