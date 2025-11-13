@@ -118,7 +118,7 @@ public class GamePanel extends JPanel {
 						hudModel.setScore(0);
 						hudView.refresh(hudModel);
 						//Player Reset
-						canvas.goodGuy.setPosition(20,530);
+						canvas.goodGuy.setPosition(600,300);
 						// Restart Game
 						play = true;
 					}

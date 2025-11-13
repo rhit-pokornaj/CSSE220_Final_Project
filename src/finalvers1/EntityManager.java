@@ -9,7 +9,7 @@ import java.util.List;
 public class EntityManager {
 	
 	public List<Sprite> sprites = new ArrayList<>();
-	Player goodGuy = new Player(20,100);
+	Player goodGuy = new Player(600,300);
 	
 	private HudModel hudModel;
 	private HudView hudView;
@@ -46,7 +46,7 @@ public class EntityManager {
 				if (goodGuy.isTouching(s)) {
 					goodGuy.setXVelocity(0);
 					goodGuy.setYVelocity(0);
-					goodGuy.setPosition(250, 250);
+					goodGuy.setPosition(600, 300);
 					hudModel.loseLife(1);
 					hudView.refresh(hudModel);
 				}
@@ -54,9 +54,9 @@ public class EntityManager {
 			
 			// Platform Collisions
 			if (s instanceof Platform) {
-				 if (goodGuy.isTouching(s) && goodGuy.getY()+10 > s.getY()) {
+				 if (goodGuy.isTouching(s) && goodGuy.getY() > s.getY() ) {
 						goodGuy.setYVelocity(0);
-						goodGuy.setY(s.getY()+10);
+						goodGuy.setY(s.getY()+20);
 				} else if (goodGuy.isTouching(s) && goodGuy.getY() < s.getY()) {
 					onFloor = true;
 					on = s;

@@ -88,7 +88,13 @@ public class GameComponent extends JComponent {
         }
 
         // Reset player position (e.g. start at left side)
-        goodGuy.setPosition(50, 400);
+        if (currentLevel == 2) {
+        	goodGuy.setPosition(600, 300);
+        	hud.setLifeCount(3);
+        } else if (currentLevel == 3) {
+        	goodGuy.setPosition(600, 300);
+        	hud.setLifeCount(3);
+        } 
         loadLevel(currentLevel);
     }
     
