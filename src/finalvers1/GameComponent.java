@@ -34,7 +34,7 @@ public class GameComponent extends JComponent {
         goodGuy = entities.goodGuy;
         
         // Level loader
-        String levelFile = "C:\\Users\\annusha\\eclipse-workspace\\CSSE220_Final_Project\\src\\finalvers1\\level1.txt";
+        String levelFile = String.format("src/finalvers1/level%d.txt", 1);
         LevelLoader.loadPlatforms(levelFile, entities);
        
 
@@ -70,7 +70,7 @@ public class GameComponent extends JComponent {
    
     private void loadLevel(int levelNumber) {
         entities.clearLevel(); // clear old platforms/enemies/etc.
-        String levelFile = "C:\\Users\\annusha\\eclipse-workspace\\CSSE220_Final_Project\\src\\finalvers1\\level" + levelNumber + ".txt";
+        String levelFile = String.format("src/finalvers1/level%d.txt", levelNumber);
         LevelLoader.loadPlatforms(levelFile, entities);
         System.out.println("Loaded level " + levelNumber);
     }
