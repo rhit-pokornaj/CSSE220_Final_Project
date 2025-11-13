@@ -37,6 +37,7 @@ public class GameComponent extends JComponent {
         String levelFile = "C:\\Users\\annusha\\eclipse-workspace\\CSSE220_Final_Project\\src\\finalvers1\\level1.txt";
         LevelLoader.loadPlatforms(levelFile, entities);
         
+ 
 
 
         // Game loop timer
@@ -52,6 +53,7 @@ public class GameComponent extends JComponent {
             }
             
             repaint();
+            
         });
         timer.start();
     }
@@ -63,12 +65,6 @@ public class GameComponent extends JComponent {
         entities.drawAll(g2);
     }
     
-    public void loadLevel(int levelNumber) {
-        entities.clearLevel(); // clear all platforms, enemies, etc.
-
-        String filename = "levels/level" + levelNumber + ".txt";
-        LevelLoader.loadPlatforms(filename, entities);
-    }
 
     
 
