@@ -36,14 +36,16 @@ public class GameComponent extends JComponent {
         // Level loader
         String levelFile = "C:\\Users\\annusha\\eclipse-workspace\\CSSE220_Final_Project\\src\\finalvers1\\level1.txt";
         LevelLoader.loadPlatforms(levelFile, entities);
-        
- 
-
+       
 
         // Game loop timer
         timer = new Timer(30, e -> {
         	
             entities.updateAll(isDownPressed());
+            
+            if (hud.getScore() == 6) {
+                nextLevel(hud);
+            }
             
             //player wraps around screen when going off edge
             if (goodGuy.getX() < -goodGuy.getWidth()) {
@@ -63,6 +65,31 @@ public class GameComponent extends JComponent {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         entities.drawAll(g2);
+    }
+    
+   
+    private void loadLevel(int levelNumber) {
+        entities.clearLevel(); // clear old platforms/enemies/etc.
+        String levelFile = "C:\\Users\\annusha\\eclipse-workspace\\CSSE220_Final_Project\\src\\finalvers1\\level" + levelNumber + ".txt";
+        LevelLoader.loadPlatforms(levelFile, entities);
+        System.out.println("Loaded level " + levelNumber);
+    }
+
+    // 🚪 Advance to next level
+    private void nextLevel(HudModel hud) {
+        currentLevel++;
+        hud.setScore(0);
+        
+        if (currentLevel > 3) {
+            System.out.println("🎉 All levels complete!");
+            timer.stop();
+            // optional: show win screen or restart game
+            return;
+        }
+
+        // Reset player position (e.g. start at left side)
+        goodGuy.setPosition(50, 400);
+        loadLevel(currentLevel);
     }
     
 
