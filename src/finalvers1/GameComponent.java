@@ -4,7 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
- 
+import java.awt.Image;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.Timer;
  
@@ -15,6 +18,9 @@ public class GameComponent extends JComponent {
     public static final int HEIGHT = 600;
     public static final Color BG = Color.BLUE;
     public static final Color FG = Color.BLACK;
+    private Image BGImg;
+    private boolean imgLoaded = false;
+    
 
     Timer timer;
     private int currentLevel = 1;
@@ -27,6 +33,13 @@ public class GameComponent extends JComponent {
 
     public GameComponent(HudModel hud, HudView hudView) {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        
+        try {
+			BGImg = ImageIO.read(Player.class.getResource("SimpleBG.png"));
+			imgLoaded = true;
+		} catch (IOException | IllegalArgumentException ex) {
+			imgLoaded = false;
+		}
         this.setBackground(BG);
 
         // Initialize the game world
@@ -64,6 +77,12 @@ public class GameComponent extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        if (imgLoaded) {
+            g2.drawImage(BGImg, 0, 0, WIDTH, HEIGHT, null);
+        } else {
+            g2.setColor(Color.BLUE);
+            g2.fillRect(0, 0, WIDTH, HEIGHT);
+        }
         entities.drawAll(g2);
     }
     
