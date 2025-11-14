@@ -22,7 +22,7 @@ public class GameOverViewer extends JLabel {
 //        add(restart);
         
         setVisible(false); // hidden by default
-        setAlignmentX(.5f);
-        setAlignmentY(.5f);
+        setAlignmentX(0.5f);
+        setAlignmentY(0.0f);
     }
 }

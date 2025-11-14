@@ -7,7 +7,7 @@ public class HudView extends javax.swing.JLabel {
 	 */
 	public HudView() {
 		setOpaque(false);
-		setForeground(new java.awt.Color(230, 240, 255));
+		setForeground(new java.awt.Color(50, 150, 255));
 		setFont(getFont().deriveFont(java.awt.Font.BOLD, 20));
 	}
 	
