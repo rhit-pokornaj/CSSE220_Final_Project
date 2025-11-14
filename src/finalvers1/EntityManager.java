@@ -52,6 +52,14 @@ public class EntityManager {
 				}
 			}
 			
+			if (goodGuy.getY()>=600) {
+				goodGuy.setXVelocity(0);
+				goodGuy.setYVelocity(0);
+				goodGuy.setPosition(600, 300);
+				hudModel.loseLife(1);
+				hudView.refresh(hudModel);
+			}
+			
 			// Platform Collisions
 			if (s instanceof Platform) {
 				 if (goodGuy.isTouching(s) && goodGuy.getY() > s.getY() ) {
@@ -84,7 +92,7 @@ public class EntityManager {
 	}
 	
 
-	
+
 	public void drawAll(Graphics2D g) {
         //draw sprites
 		for (Sprite s : sprites) {
